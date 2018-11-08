@@ -2,9 +2,42 @@ import React, { Component } from 'react';
 
 class Symbols extends Component {
 
+  ref = React.createRef();
+  history = [];
+  scratching = false;
+
+  componentDidMount(){
+
+    let Scratchy = this.ref.current;
+
+    Scratchy.addEventListener("mouseenter", e => {
+      this.scratching = false;
+    });
+
+    Scratchy.addEventListener("mouseleave", e => {
+      this.scratching = false;
+    });
+
+    Scratchy.addEventListener("mousedown", e => {
+      this.scratching = true;
+    });
+
+    Scratchy.addEventListener("mouseup", e => {
+      this.scratching = false;
+    });
+
+    Scratchy.addEventListener("mousemove", e => {
+      if (this.scratching) {
+        this.history.push(e.layerX, e.layerY);
+        Scratchy.style.setProperty('--paintlet-history', this.history.join(','));
+      }
+    });
+
+  }
+
   render() {
     return (
-        <div className="Symbols">
+        <div className="Symbols" ref={this.ref}>
             <div><i className="fab fa-aws"></i></div>
             <div><i className="fab fa-github"></i></div>
             <div><i className="fab fa-edge"></i></div>

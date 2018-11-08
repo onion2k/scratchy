@@ -7,7 +7,6 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
-  --paintlet-history: '';
 }
 
 .Symbols {
@@ -21,6 +20,7 @@
   align-items: space-between;
   justify-items: space-between;
   mask-image: paint(foil);
+  --paintlet-history: '';
 }
 
 .Symbols > div {
