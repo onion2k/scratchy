@@ -1,6 +1,6 @@
 /* global registerPaint */
 
-class FoilPainter {
+registerPaint('foil', class FoilPainter {
 
     static get inputProperties() { return ['--paintlet-history']; }
 
@@ -8,19 +8,13 @@ class FoilPainter {
 
         const history = properties.get('--paintlet-history').toString().split(",");
 
-        ctx.fillStyle = 'rgba(0,0,0,0)';
-        ctx.beginPath();
-        ctx.rect(0, 0, geom.width, geom.height);
-        ctx.fill();
-
         ctx.fillStyle = 'rgba(255,255,255,1)';
+
         for (let i=0; i< history.length; i+=2) {
             ctx.beginPath();
-            ctx.rect(parseInt(history[i]) - 50, parseInt(history[i+1]) - 50, 100, 100);
+            ctx.arc(parseInt(history[i]), parseInt(history[i+1]), 50, 0, Math.PI * 2);
             ctx.fill();
         };
 
     }
-}
-
-registerPaint('foil', FoilPainter);
+});
