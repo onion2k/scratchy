@@ -21,6 +21,26 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Scratchy</title>
+    <script>
+
+      if (window.CSS && CSS.registerProperty) {
+          CSS.registerProperty({
+              name: '--font-bitmap',
+              syntax: '<image> | none',
+              inherits: false,
+              initialValue: 'none',
+          });
+      }
+      if (window.CSS && CSS.paintWorklet) {
+        CSS.paintWorklet.addModule('foil.js');
+      }
+
+    </script>
+    <style>
+      .Symbols {
+        --font-bitmap: url(font.gif);
+      }
+    </style>
   </head>
   <body>
     <noscript>
